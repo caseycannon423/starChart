@@ -7,7 +7,6 @@ def findStart(Array):
         if x[1] > iMax:
             iMax = x[1]
             cell = x
-
     return cell
 
 def findMaxChartDay(Array):
@@ -18,26 +17,28 @@ def findMaxChartDay(Array):
     return iLargestIndex
 
 def printLine(starList, days):
-    for x in range(days):
-
+    for x in range(days+1):
+        bMatch = False
         for star in starList:
             if x == star:
-                print('*', end='')
-            else:
-                print(' ', end='')
+                bMatch = True
+        if bMatch == True:
+            print('*', end='')
+        else:
+            print(' ', end='')
     print()
-
 
 def main():
     start = findStart(T)
     days = findMaxChartDay(T)
-    starList = [start[1]]
-    for x in range(start[1]-1, 0, -1):
+    starList = [start[0]]
+    for x in range(start[1]-1, -1, -1):
         printLine(starList, days)
         for cell in T:
             if cell[1] == x:
                 starList.append(cell[0])
-
+    for x in range(days):
+        print(x+1, end='')
 
 main()
 
